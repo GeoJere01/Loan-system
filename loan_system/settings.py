@@ -46,9 +46,9 @@ AUTH_USER_MODEL = 'core.Member'
 SECRET_KEY = 'django-insecure-#50p5o8_3!*zr6+_9&x(*r^_ht(pv)4+*38l7*o##r1=76=_!6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -168,3 +168,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
