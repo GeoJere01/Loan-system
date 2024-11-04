@@ -1,0 +1,298 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Web developer">
+
+    <!-- OG Meta Tags to improve the way the post looks when you share the page on Facebook, Twitter, LinkedIn -->
+	<meta property="og:site_name" content="" /> <!-- website name -->
+	<meta property="og:site" content="" /> <!-- website link -->
+	<meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
+	<meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
+	<meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+	<meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+	<meta name="twitter:card" content="summary_large_image"> <!-- to have large image post format in Twitter -->
+
+    <!-- Webpage Title -->
+    <title>EasyPackBack</title>
+    
+    <!-- Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.3/components/facts/fact-5/assets/css/fact-5.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">  
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" > 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/fontawesome-all.css' %}" rel="stylesheet">
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+    
+	<style>
+    .form-1 {
+	padding-top: 7.75rem;
+	padding-bottom: 7rem;
+}
+
+
+
+.form-1 .p-heading {
+	margin-bottom: 4rem;
+}  
+    
+.loan-summary-table {
+    width: 100%;
+    border-collapse: collapse; /* Remove gaps between cells */
+    background-color: #f9f9f9; /* Light background color */
+    margin: 0;
+}
+
+.loan-summary-table thead th {
+    background-color: #007bff; /* Header background color */
+    color: #fff; /* Header text color */
+    padding: 12px; /* Padding for header cells */
+    text-align: left; /* Align text to the left */
+    font-weight: bold; /* Bold text for headers */
+}
+
+.loan-summary-table tbody td {
+    padding: 10px; /* Padding for body cells */
+    border-bottom: 1px solid #ddd; /* Bottom border for separation */
+    text-align: left; /* Align text to the left */
+}
+
+.loan-summary-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2; /* Light gray background for even rows */
+}
+
+.loan-summary-table tbody tr:hover {
+    background-color: #e9ecef; /* Hover effect for rows */
+    cursor: pointer; /* Change cursor on hover */
+}
+
+.loan-summary-table tbody tr td:nth-child(4) { /* Status column styling */
+    font-weight: bold; /* Make status text bold */
+}
+
+.loan-summary-table tbody tr td:nth-child(5) { /* Total repayment column styling */
+    color: #28a745; /* Green color for total repayment */
+    font-weight: bold; /* Make text bold */
+}
+.home{
+        padding: 4rem;
+        padding-bottom: 6rem;
+        
+      }
+      .section{
+        background-color: #0b36a8;
+        border-bottom-left-radius: 150px;
+        border-bottom-right-radius: 150px;
+      }
+      .pending-section{
+        padding: 4rem;
+      }
+      .loan-form{
+        border-top-left-radius: 150px;
+        border-top-right-radius: 150px;
+      }
+  </style>
+</head>
+<body>
+    
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-gray bg-body-tertiary">
+    <div class="container">
+      <h3 class="title text-primary">EasyPackBack.</h3>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+            <li class="nav-item ">
+              <a class="nav-link" aria-current="page" href="{% url 'home' %}"> Home</a>
+            </li>
+            
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link active" aria-current="page" href="{% url 'loans' %}">Loan Apllication</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" aria-current="page" href="{% url 'user_details' user.id  %}">Profile</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" aria-current="page" href="{% url 'logout' %}"> Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Navigation end -->
+    <div class="site-section">
+      <div class="container">
+        <div class="row justify-content-center align-items-center ">
+          <div class="row justify-content-center ">
+            <div class="col-lg-5 cml-status">
+              <div class="text-box" style="padding: 1rem;">
+                <h2 class="mb-30">Your Loan Status</h2>
+                {% if outstanding_loans %}
+                <h5> Loan Status:<span style="color: green;"> {{ status }}</span></h5>
+                  <h5 >Amount Applied:<span style="color: green;"> MK {{ approved_amount}}</span></h5>
+                  <h5 style="color: black;">Interest: MK {{ interest_amount}}</h5>
+                  <h5 style="color: orangered;">Due Amount: MK {{ outstanding_amount}}</h5>
+                  <h5 style="color: red;">Due Date: {{ due_date }}</h5>
+                  {% else %}
+                    <h5>No loan information</h5>
+                  {% endif %}
+              </div> <!-- end of text-box -->
+        </div> <!-- end of col -->
+            <div class="col-lg-6">
+              <div class="text-box" style="padding: 1rem; margin-right: 10px;">
+                <h2>Your Loan Summary</h2>
+                  <div class="loan-summary-container">
+                      <table class="loan-summary-table">
+                          <thead>
+                              <tr>
+                                  <th>Amount</th>
+                                  <th>Date Applied</th>
+                                  <th>Date Due</th>
+                                  <th>Status</th>
+                                  <th>Reason</th>
+                                  <th>Total Repayment</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              {% for loan in user_loans %}
+                              <tr>
+                                  <td>{{ loan.amount }}</td>
+                                  <td>{{ loan.date_issued }}</td>
+                                  <td>{{ loan.date_due }}</td>
+                                  <td>{{ loan.status }}</td>
+                                  <td style="color: red;">{{ loan.rejection_reason }}</td>
+                                  <td>{{ loan.total_repayable }}</td>
+                              </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+              </div> <!-- end of text-box -->
+              
+          </div> <!-- end of col -->
+          
+          </div>
+        </div>
+      </div>
+    </div> <!-- .END site-section -->
+    <div class="form-1 clm bg-gray">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        {%  if show_loan_form  %}
+          <div class="col-lg-9" >
+              <h2 style="text-align: center;">Loan Application Form</h2>
+              <form method="POST" enctype="multipart/form-data" id="">
+                {% csrf_token %}
+                <div class="form-row justify-content-center">
+        
+                <!-- Loan Application Section -->
+                <div class="form-group col-md-9">
+                  
+                    <legend>Loan Details</legend>
+                    <!-- Loan Amount Field -->
+                    {{ loan_form|crispy }}
+                    
+                    <!-- Total Repayment Amount Field (Readonly) -->
+                    <label for="id_total_repayment">Total Amount to Repay:</label><br>
+                    <input class="form-control" type="text" id="id_total_repayment" name="total_repayment" readonly>
+        
+                    <script>
+                        // JavaScript to auto-calculate total repayment amount
+                        const interestRate = 0.15;  // Example: 15% interest rate
+                        const loanAmountField = document.getElementById('id_amount');
+                        const totalRepaymentField = document.getElementById('id_total_repayment');
+        
+                        loanAmountField.addEventListener('input', function() {
+                            const loanAmount = parseFloat(loanAmountField.value) || 0;
+                            const totalRepayment = loanAmount + (loanAmount * interestRate);
+                            totalRepaymentField.value = totalRepayment.toFixed(2);  // Show 2 decimal places
+                        });
+                    </script>
+                </div>
+                
+                  
+                  <div class="form-group col-md-9">
+                    <legend>Bank Details</legend>
+                  {{ bank_details_form|crispy }}
+                </div>
+                    <div class="form-group col-md-12" align="center">
+                        <button type="submit" class="btn btn-primary mt-20 mb-3" style="padding: 0.657rem 3rem;">Submit Loan Application</button>
+                    </div>
+                </div>
+            
+            </form>
+          </div>
+          {% else %}
+          <p style="text-align: center;">You have an outstanding loan. You cannot apply for a new loan until the existing one is repaid.</p>
+          {% endif %}
+      </div>
+  </div>
+</div>
+</div>
+
+    <!-- Footer -->   
+    <!-- Copyright -->
+    <div class="copyright footer bg-gray">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-3">
+                  <h2 style="color: #fff;"><span style="color: rgb(42, 211, 42);">Easy</span>PackBack<span style="color: rgb(42, 211, 42);">.</span></h2>
+          
+              </div> <!-- end of col -->
+              <div class="col-lg-3">
+                  <h3 style="color: #fff;">Our Address</h3>
+                  <p style="color: #fff;"><i class="fa fa-location-arrow" aria-hidden="true"></i> Area 6, Off M1 Road, Opp MANIM <br> Offices, Lilongwe Malawi <br>
+                  Private Bag B444 Lilongwe</p>
+              </div> <!-- end of col -->
+              <div class="col-lg-3">
+                  <h3 style="color: #fff;">Contact</h3>
+                  <p style="color: #fff;"><i class="fa fa-phone" aria-hidden="true"></i>+265 999 000 000</p>
+                  <p style="color: #fff;"><i class="fa fa-envelope" aria-hidden="true"></i> info@easypackback.com</p>    
+              </div> <!-- end of col -->
+              <div class="col-lg-3">
+                  <h3 style="color: #fff;">Quick Links</h3>  
+                  <p><a href="">Home</a></p>  
+                  <p><a href="">About</a></p> 
+                  <p><a href="">Register</a></p> 
+                  <p><a href="">Login</a></p>  
+              </div> <!-- end of col -->
+          </div> <!-- enf of row -->
+      </div> <!-- end of container -->
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-12">
+                  <p class="p-small">&copy;EasyPackBack. 2024 | All Rights Reserved.</p>
+              </div> <!-- end of col -->
+          </div> <!-- enf of row -->
+      </div> <!-- end of container -->
+  </div> <!-- end of copyright --> 
+  <!-- end of copyright -->
+  
+
+  <script src="https://cdn.lordicon.com/lordicon.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="js/jquery/jquery-2.2.4.min.js"></script>
+  <script src="js/bootstrap/bootstrap.min.js"></script>
+      
+  <!-- Scripts -->
+  <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+  <script src="js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+  <script src="js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+  <script src="js/scripts.js"></script> <!-- Custom scripts -->
+</body>
+</html>

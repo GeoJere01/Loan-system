@@ -1,0 +1,6 @@
+Hi {{ user.username }},
+ Welcome to EasyPackBack community.
+ We are proud 
+Thank you for registering. Please click the link below to activate your account:
+
+{{ activation_url }}
